@@ -33,3 +33,27 @@ const human = new humanModel ({
 });
 human.save();
 
+const kiwi = new fruitModel({
+    name : "kiwi",
+    rating : 10 , 
+    review : "The best fruit!"
+});
+
+const banana = new fruitModel({
+    name : "banana",
+    rating : 8 , 
+    review : "Good fruit"
+});
+const orange = new fruitModel({
+    name : "orange",
+    rating : 9 , 
+    review : "Very delicius fruit"
+});
+
+fruitModel.insertMany([kiwi , banana , orange]).then(function(){
+    console.log("Successfuly saved all the fruits to fruitsDB");  //Success
+}).catch(function(err){
+    console.log(err);
+});
+
+
