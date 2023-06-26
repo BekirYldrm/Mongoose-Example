@@ -26,3 +26,10 @@ const humanSchema = new mongoose.Schema({
 });
 
 const humanModel = mongoose.mongoose.model("Human" , humanSchema);
+
+const human = new humanModel ({
+    name : "John" , 
+    age : 37
+});
+human.save();
+
