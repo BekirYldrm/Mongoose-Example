@@ -17,7 +17,7 @@ const fruit = new fruitModel ({
     rating : 7 , 
     review : "Nice fruit"
 });
-fruit.save();
+// fruit.save();
 
 
 const humanSchema = new mongoose.Schema({
@@ -31,7 +31,7 @@ const human = new humanModel ({
     name : "John" , 
     age : 37
 });
-human.save();
+// human.save();
 
 const kiwi = new fruitModel({
     name : "kiwi",
@@ -50,10 +50,20 @@ const orange = new fruitModel({
     review : "Very delicius fruit"
 });
 
-fruitModel.insertMany([kiwi , banana , orange]).then(function(){
-    console.log("Successfuly saved all the fruits to fruitsDB");  //Success
+// fruitModel.insertMany([kiwi , banana , orange]).then(function(){
+//     console.log("Successfuly saved all the fruits to fruitsDB");  //Success
+// }).catch(function(err){
+//     console.log(err);
+// });
+
+fruitModel.find().then(function(fruitDocs){
+                                                                //success
+    fruitDocs.forEach(element => {     
+        console.log(element.name );
+        mongoose.connection.close();
+    });
 }).catch(function(err){
-    console.log(err);
+    console.log(err); //error
 });
-
-
+   
+        
