@@ -76,7 +76,28 @@ fruitModel.find().then(function(fruitDocs){
     });
     mongoose.connection.close();
 }).catch(function(err){
-    console.log(err);
+    console.log(err); 
 });
    
 
+
+humanModel.updateOne({name:"John"} , {favouriteFruit : kiwi}).then(function(){
+    console.log("Successfuly update the document");
+}).catch(function(err){
+    console.log(err);
+})
+
+
+fruitModel.deleteOne({_id : "649a009eeb25152a556766e5"} ).then(function(){
+    console.log("Successfuly delete the document");
+}).catch(function(err){
+    console.log(err);
+})
+
+
+
+fruitModel.deleteMany({name:"apple"}).then(function(){
+    console.log("Successfuly delete the documents");
+}).catch(function(err){
+    console.log(err);
+})
