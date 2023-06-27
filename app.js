@@ -5,33 +5,34 @@ mongoose.connect("mongodb://0.0.0.0:27017/fruitsDB");
 
 
 const fruitSchema = new mongoose.Schema({
-    name : String , 
-    rating : Number , 
+    name : {
+        type:String,
+        required : [true , "Plase check your data entry, no name specified!"]
+    }, 
+    rating :{
+        type : Number , 
+        min:1,  
+        max:10
+    },
     review : String
 });
 
-const fruitModel = mongoose.model("Fruit", fruitSchema);
-
-const fruit = new fruitModel ({
-    name : "apple" ,
-    rating : 7 , 
-    review : "Nice fruit"
-});
-// fruit.save();
-
-
 const humanSchema = new mongoose.Schema({
     name: String,
-    age : Number
+    age : Number,
+    favouriteFruit : fruitSchema
 });
 
+const fruitModel = mongoose.model("Fruit", fruitSchema);
 const humanModel = mongoose.mongoose.model("Human" , humanSchema);
 
-const human = new humanModel ({
-    name : "John" , 
-    age : 37
+
+
+const apple = new fruitModel ({
+    name:"apple",
+    rating : 10 , 
+    review : "Nice fruit"
 });
-// human.save();
 
 const kiwi = new fruitModel({
     name : "kiwi",
@@ -49,21 +50,12 @@ const orange = new fruitModel({
     rating : 9 , 
     review : "Very delicius fruit"
 });
+const human = new humanModel ({
+    name : "Angela" , 
+    age : 25,
+    favouriteFruit : banana
 
-// fruitModel.insertMany([kiwi , banana , orange]).then(function(){
-//     console.log("Successfuly saved all the fruits to fruitsDB");  //Success
-// }).catch(function(err){
-//     console.log(err);
-// });
-
-fruitModel.find().then(function(fruitDocs){
-                                                                //success
-    fruitDocs.forEach(element => {     
-        console.log(element.name );
-        mongoose.connection.close();
-    });
-}).catch(function(err){
-    console.log(err); //error
 });
-   
-        
+apple.save();
+human.save();
+
