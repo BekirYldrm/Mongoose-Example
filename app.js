@@ -59,3 +59,24 @@ const human = new humanModel ({
 apple.save();
 human.save();
 
+
+
+fruitModel.insertMany([kiwi , banana , orange]).then(function(){
+    console.log("Successfuly saved all the fruits to fruitsDB"); 
+}).catch(function(err){
+    console.log(err);
+});
+
+
+
+fruitModel.find().then(function(fruitDocs){
+                                                               
+    fruitDocs.forEach(element => {     
+        console.log(element.name );
+    });
+    mongoose.connection.close();
+}).catch(function(err){
+    console.log(err);
+});
+   
+
