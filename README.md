@@ -21,9 +21,8 @@ The name of the database you want to create or have previously created.
 
 ## Requirements to run the project
 
-You need to install  
-
 * `npm i mongoose`
 * `npm i express`
+  modules must be loaded.
 
- modules via terminal.
+
